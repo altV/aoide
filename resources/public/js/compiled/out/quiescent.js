@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 0.0-2202
+// Compiled by ClojureScript 0.0-2371
 goog.provide('quiescent');
 goog.require('cljs.core');
 /**
@@ -8,46 +8,46 @@ goog.require('cljs.core');
 * unchanged.
 */
 quiescent.js_props = (function js_props(obj){if(cljs.core.map_QMARK_.call(null,obj))
-{var o = (function (){var obj17988 = {};return obj17988;
-})();var seq__17989_17995 = cljs.core.seq.call(null,obj);var chunk__17990_17996 = null;var count__17991_17997 = 0;var i__17992_17998 = 0;while(true){
-if((i__17992_17998 < count__17991_17997))
-{var vec__17993_17999 = cljs.core._nth.call(null,chunk__17990_17996,i__17992_17998);var k_18000 = cljs.core.nth.call(null,vec__17993_17999,0,null);var v_18001 = cljs.core.nth.call(null,vec__17993_17999,1,null);(o[cljs.core.name.call(null,k_18000)] = js_props.call(null,v_18001));
+{var o = (function (){var obj24003 = {};return obj24003;
+})();var seq__24004_24010 = cljs.core.seq.call(null,obj);var chunk__24005_24011 = null;var count__24006_24012 = (0);var i__24007_24013 = (0);while(true){
+if((i__24007_24013 < count__24006_24012))
+{var vec__24008_24014 = cljs.core._nth.call(null,chunk__24005_24011,i__24007_24013);var k_24015 = cljs.core.nth.call(null,vec__24008_24014,(0),null);var v_24016 = cljs.core.nth.call(null,vec__24008_24014,(1),null);(o[cljs.core.name.call(null,k_24015)] = js_props.call(null,v_24016));
 {
-var G__18002 = seq__17989_17995;
-var G__18003 = chunk__17990_17996;
-var G__18004 = count__17991_17997;
-var G__18005 = (i__17992_17998 + 1);
-seq__17989_17995 = G__18002;
-chunk__17990_17996 = G__18003;
-count__17991_17997 = G__18004;
-i__17992_17998 = G__18005;
+var G__24017 = seq__24004_24010;
+var G__24018 = chunk__24005_24011;
+var G__24019 = count__24006_24012;
+var G__24020 = (i__24007_24013 + (1));
+seq__24004_24010 = G__24017;
+chunk__24005_24011 = G__24018;
+count__24006_24012 = G__24019;
+i__24007_24013 = G__24020;
 continue;
 }
 } else
-{var temp__4126__auto___18006 = cljs.core.seq.call(null,seq__17989_17995);if(temp__4126__auto___18006)
-{var seq__17989_18007__$1 = temp__4126__auto___18006;if(cljs.core.chunked_seq_QMARK_.call(null,seq__17989_18007__$1))
-{var c__8631__auto___18008 = cljs.core.chunk_first.call(null,seq__17989_18007__$1);{
-var G__18009 = cljs.core.chunk_rest.call(null,seq__17989_18007__$1);
-var G__18010 = c__8631__auto___18008;
-var G__18011 = cljs.core.count.call(null,c__8631__auto___18008);
-var G__18012 = 0;
-seq__17989_17995 = G__18009;
-chunk__17990_17996 = G__18010;
-count__17991_17997 = G__18011;
-i__17992_17998 = G__18012;
+{var temp__4126__auto___24021 = cljs.core.seq.call(null,seq__24004_24010);if(temp__4126__auto___24021)
+{var seq__24004_24022__$1 = temp__4126__auto___24021;if(cljs.core.chunked_seq_QMARK_.call(null,seq__24004_24022__$1))
+{var c__9847__auto___24023 = cljs.core.chunk_first.call(null,seq__24004_24022__$1);{
+var G__24024 = cljs.core.chunk_rest.call(null,seq__24004_24022__$1);
+var G__24025 = c__9847__auto___24023;
+var G__24026 = cljs.core.count.call(null,c__9847__auto___24023);
+var G__24027 = (0);
+seq__24004_24010 = G__24024;
+chunk__24005_24011 = G__24025;
+count__24006_24012 = G__24026;
+i__24007_24013 = G__24027;
 continue;
 }
 } else
-{var vec__17994_18013 = cljs.core.first.call(null,seq__17989_18007__$1);var k_18014 = cljs.core.nth.call(null,vec__17994_18013,0,null);var v_18015 = cljs.core.nth.call(null,vec__17994_18013,1,null);(o[cljs.core.name.call(null,k_18014)] = js_props.call(null,v_18015));
+{var vec__24009_24028 = cljs.core.first.call(null,seq__24004_24022__$1);var k_24029 = cljs.core.nth.call(null,vec__24009_24028,(0),null);var v_24030 = cljs.core.nth.call(null,vec__24009_24028,(1),null);(o[cljs.core.name.call(null,k_24029)] = js_props.call(null,v_24030));
 {
-var G__18016 = cljs.core.next.call(null,seq__17989_18007__$1);
-var G__18017 = null;
-var G__18018 = 0;
-var G__18019 = 0;
-seq__17989_17995 = G__18016;
-chunk__17990_17996 = G__18017;
-count__17991_17997 = G__18018;
-i__17992_17998 = G__18019;
+var G__24031 = cljs.core.next.call(null,seq__24004_24022__$1);
+var G__24032 = null;
+var G__24033 = (0);
+var G__24034 = (0);
+seq__24004_24010 = G__24031;
+chunk__24005_24011 = G__24032;
+count__24006_24012 = G__24033;
+i__24007_24013 = G__24034;
 continue;
 }
 }
@@ -78,26 +78,26 @@ quiescent._STAR_component_STAR_ = null;
 * but will *not* be included in any calculations regarding whether the
 * component should re-render.
 */
-quiescent.component = (function component(renderer){var react_component = React.createClass({"render": (function (){var this$ = this;var _STAR_component_STAR_18021 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
+quiescent.component = (function component(renderer){var react_component = React.createClass({"render": (function (){var this$ = this;var _STAR_component_STAR_24036 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
 return cljs.core.apply.call(null,renderer,(this$.props["value"]),(this$.props["statics"]));
-}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_18021;
+}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_24036;
 }}), "shouldComponentUpdate": (function (next_props,_){var this$ = this;return cljs.core.not_EQ_.call(null,(this$.props["value"]),(next_props["value"]));
 })});return ((function (react_component){
 return (function() { 
-var G__18022__delegate = function (value,static_args){return react_component.call(null,{"statics": static_args, "value": value});
+var G__24037__delegate = function (value,static_args){return react_component.call(null,{"statics": static_args, "value": value});
 };
-var G__18022 = function (value,var_args){
+var G__24037 = function (value,var_args){
 var static_args = null;if (arguments.length > 1) {
   static_args = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1),0);} 
-return G__18022__delegate.call(this,value,static_args);};
-G__18022.cljs$lang$maxFixedArity = 1;
-G__18022.cljs$lang$applyTo = (function (arglist__18023){
-var value = cljs.core.first(arglist__18023);
-var static_args = cljs.core.rest(arglist__18023);
-return G__18022__delegate(value,static_args);
+return G__24037__delegate.call(this,value,static_args);};
+G__24037.cljs$lang$maxFixedArity = 1;
+G__24037.cljs$lang$applyTo = (function (arglist__24038){
+var value = cljs.core.first(arglist__24038);
+var static_args = cljs.core.rest(arglist__24038);
+return G__24037__delegate(value,static_args);
 });
-G__18022.cljs$core$IFn$_invoke$arity$variadic = G__18022__delegate;
-return G__18022;
+G__24037.cljs$core$IFn$_invoke$arity$variadic = G__24037__delegate;
+return G__24037;
 })()
 ;
 ;})(react_component))
@@ -106,37 +106,37 @@ return G__18022;
 * Wrapper component used to mix-in lifecycle access
 */
 quiescent.WrapperComponent = React.createClass({"componentWillUnmount": (function (){var this$ = this;var temp__4126__auto__ = (this$.props["onWillUnmount"]);if(cljs.core.truth_(temp__4126__auto__))
-{var f = temp__4126__auto__;var _STAR_component_STAR_18028 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
+{var f = temp__4126__auto__;var _STAR_component_STAR_24043 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
 return f.call(null);
-}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_18028;
+}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_24043;
 }} else
 {return null;
 }
 }), "componentWillUpdate": (function (_,___$1){var this$ = this;var temp__4126__auto__ = (this$.props["onWillUpdate"]);if(cljs.core.truth_(temp__4126__auto__))
-{var f = temp__4126__auto__;var _STAR_component_STAR_18027 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
+{var f = temp__4126__auto__;var _STAR_component_STAR_24042 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
 return f.call(null);
-}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_18027;
+}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_24042;
 }} else
 {return null;
 }
 }), "componentWillMount": (function (){var this$ = this;var temp__4126__auto__ = (this$.props["onWillMount"]);if(cljs.core.truth_(temp__4126__auto__))
-{var f = temp__4126__auto__;var _STAR_component_STAR_18026 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
+{var f = temp__4126__auto__;var _STAR_component_STAR_24041 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
 return f.call(null);
-}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_18026;
+}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_24041;
 }} else
 {return null;
 }
 }), "componentDidMount": (function (){var this$ = this;var temp__4126__auto__ = (this$.props["onMount"]);if(cljs.core.truth_(temp__4126__auto__))
-{var f = temp__4126__auto__;var _STAR_component_STAR_18025 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
+{var f = temp__4126__auto__;var _STAR_component_STAR_24040 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
 return f.call(null,this$.getDOMNode());
-}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_18025;
+}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_24040;
 }} else
 {return null;
 }
 }), "componentDidUpdate": (function (prev_props,prev_state){var this$ = this;var temp__4126__auto__ = (this$.props["onUpdate"]);if(cljs.core.truth_(temp__4126__auto__))
-{var f = temp__4126__auto__;var _STAR_component_STAR_18024 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
+{var f = temp__4126__auto__;var _STAR_component_STAR_24039 = quiescent._STAR_component_STAR_;try{quiescent._STAR_component_STAR_ = this$;
 return f.call(null,this$.getDOMNode());
-}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_18024;
+}finally {quiescent._STAR_component_STAR_ = _STAR_component_STAR_24039;
 }} else
 {return null;
 }
@@ -159,8 +159,8 @@ return f.call(null,this$.getDOMNode());
 * @param {...*} var_args
 */
 quiescent.wrapper = (function() { 
-var wrapper__delegate = function (child,kvs){var props = quiescent.js_props.call(null,cljs.core.apply.call(null,cljs.core.array_map,new cljs.core.Keyword(null,"wrappee","wrappee",2609412088),child,kvs));var temp__4126__auto___18029 = (child.props["key"]);if(cljs.core.truth_(temp__4126__auto___18029))
-{var key_18030 = temp__4126__auto___18029;(props["key"] = key_18030);
+var wrapper__delegate = function (child,kvs){var props = quiescent.js_props.call(null,cljs.core.apply.call(null,cljs.core.array_map,new cljs.core.Keyword(null,"wrappee","wrappee",876822573),child,kvs));var temp__4126__auto___24044 = (child.props["key"]);if(cljs.core.truth_(temp__4126__auto___24044))
+{var key_24045 = temp__4126__auto___24044;(props["key"] = key_24045);
 } else
 {}
 return quiescent.WrapperComponent.call(null,props);
@@ -170,9 +170,9 @@ var kvs = null;if (arguments.length > 1) {
   kvs = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1),0);} 
 return wrapper__delegate.call(this,child,kvs);};
 wrapper.cljs$lang$maxFixedArity = 1;
-wrapper.cljs$lang$applyTo = (function (arglist__18031){
-var child = cljs.core.first(arglist__18031);
-var kvs = cljs.core.rest(arglist__18031);
+wrapper.cljs$lang$applyTo = (function (arglist__24046){
+var child = cljs.core.first(arglist__24046);
+var kvs = cljs.core.rest(arglist__24046);
 return wrapper__delegate(child,kvs);
 });
 wrapper.cljs$core$IFn$_invoke$arity$variadic = wrapper__delegate;
@@ -185,7 +185,7 @@ return wrapper;
 * 
 * The function will be passed the rendered DOM node.
 */
-quiescent.on_update = (function on_update(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onUpdate","onUpdate",2573468410),f);
+quiescent.on_update = (function on_update(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onUpdate","onUpdate",-315358968),f);
 });
 /**
 * Wrap a component, specifying a function to be called on the
@@ -193,7 +193,7 @@ quiescent.on_update = (function on_update(child,f){return quiescent.wrapper.call
 * 
 * The function will be passed the rendered DOM node.
 */
-quiescent.on_mount = (function on_mount(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onMount","onMount",3966305516),f);
+quiescent.on_mount = (function on_mount(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onMount","onMount",-876858467),f);
 });
 /**
 * Wrap a component, specifying a function to be called on the
@@ -201,7 +201,7 @@ quiescent.on_mount = (function on_mount(child,f){return quiescent.wrapper.call(n
 * 
 * The function will be passed the rendered DOM node.
 */
-quiescent.on_render = (function on_render(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onMount","onMount",3966305516),f,new cljs.core.Keyword(null,"onUpdate","onUpdate",2573468410),f);
+quiescent.on_render = (function on_render(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onMount","onMount",-876858467),f,new cljs.core.Keyword(null,"onUpdate","onUpdate",-315358968),f);
 });
 /**
 * Wrap a component, specifying a function to be called on the
@@ -209,7 +209,7 @@ quiescent.on_render = (function on_render(child,f){return quiescent.wrapper.call
 * 
 * The function will be called with no arguments.
 */
-quiescent.on_will_mount = (function on_will_mount(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onWillMount","onWillMount",3483492282),f);
+quiescent.on_will_mount = (function on_will_mount(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onWillMount","onWillMount",-2065876946),f);
 });
 /**
 * Wrap a component, specifying a function to be called on the
@@ -217,7 +217,7 @@ quiescent.on_will_mount = (function on_will_mount(child,f){return quiescent.wrap
 * 
 * The function will be called with no arguments.
 */
-quiescent.on_will_update = (function on_will_update(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onWillUpdate","onWillUpdate",4786127340),f);
+quiescent.on_will_update = (function on_will_update(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onWillUpdate","onWillUpdate",1307659073),f);
 });
 /**
 * Wrap a component, specifying a function to be called on the
@@ -225,7 +225,7 @@ quiescent.on_will_update = (function on_will_update(child,f){return quiescent.wr
 * 
 * The function will be called with no arguments.
 */
-quiescent.on_will_render = (function on_will_render(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onWillMount","onWillMount",3483492282),f,new cljs.core.Keyword(null,"onWillUpdate","onWillUpdate",4786127340),f);
+quiescent.on_will_render = (function on_will_render(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onWillMount","onWillMount",-2065876946),f,new cljs.core.Keyword(null,"onWillUpdate","onWillUpdate",1307659073),f);
 });
 /**
 * Wrap a component, specifying a function to be called on the
@@ -233,7 +233,7 @@ quiescent.on_will_render = (function on_will_render(child,f){return quiescent.wr
 * 
 * The function will be called with no arguments.
 */
-quiescent.on_will_unmount = (function on_will_unmount(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onWillUnmount","onWillUnmount",1940175105),f);
+quiescent.on_will_unmount = (function on_will_unmount(child,f){return quiescent.wrapper.call(null,child,new cljs.core.Keyword(null,"onWillUnmount","onWillUnmount",-16104606),f);
 });
 /**
 * Given a ReactJS component, immediately render it, rooted to the

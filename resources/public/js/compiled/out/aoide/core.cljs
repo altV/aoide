@@ -12,18 +12,18 @@
 
 ;; (println "Edits to this text should show up in your developer console.")
 
-;; (fw/watch-and-reload
-;;  :jsload-callback (fn []
-;;                     ;; (stop-and-start-my app)
-;;                     ))
-
 (defonce world (atom {:dirs []
                       :text "hi"
                       :msg "Hello"}))
 
 (q/defcomponent Root [data]
   (html
-    [:h1 (:msg data)]))
+    [:div
+     [:h1 (:msg data)]
+     [:div "asdf"]
+     [:div "asdf"]
+     [:div "qwer"]]
+    ))
 
 (defn render [data]
   (q/render (Root data)

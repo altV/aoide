@@ -1,14 +1,14 @@
 {"version":3,
  "file":
- "/Users/leo/workspace/aoide/resources/public/js/compiled/out/aoide/core.js",
+ "/home/valt/workspace/aoide/resources/public/js/compiled/out/aoide/core.js",
  "sources":["core.cljs"],
- "lineCount":30,
+ "lineCount":31,
  "mappings":
- ";AAAA;;;;;;;;AAmBA,GAAA,OAASA;CAAT;CAAA,AAAA,AAASA,mBAAM,yBAAA,2CAAA,qDAAA,iCAAA,qDAAA,KAAA,mDAAA,vQAACC;;AAIhB;;;kBAAA,AAAAC,8BAAA,iBAAA,jEAAgBC,2DAAMC,MACpB,IAAAC,oGAAA,AAAA,OAAAC,0BAAAC,aAAA,EAAA,AAAAC,+BAAAH,aAAA,AAAAI,yCAAAJ,YAAA,MAAA,AAAAK,2BAAAC,qBAAA,EAAA,AAAAH,+BAAAH,aAAA,iCAAA,mFAAA,AAAAO,wCAAAP,xeACO,AAAA,iFAAMD;;AAEf,oBAAA,uBAAA,3CAAMS,qCAAQT,MACZ,OAACU,2BAAS,AAACX,0BAAKC,MACd,wBAAA,xBAAiBW;;AAErB,+CAAA,/CAACC,8BAAUhB,6FACP,+BAAA,pBAAKiB,EAAEA,MAAEA,MAAEb,MAAM,OAACS,4BAAOT;;AAE7B,2CAAA,3CAACc,sHACC,aAAA,AAAO,2EAAA,mFAAA,vJAACC,+BAAMnB,iBAAMoB,0KAAqBC;;AAE3C,GAAA,OAASC;CAAT;CAAA,AAAA,AAASA,kCAAW,4BAAA,AAAAC,5BAACV,sDAAQb",
+ ";AAAA;;;;;;;;AAcA,GAAA,OAASA;CAAT;CAAA,AAAA,AAASA,mBAAM,yBAAA,2CAAA,oDAAA,iCAAA,sDAAA,KAAA,oDAAA,xQAACC;;AAIhB;;;kBAAA,AAAAC,8BAAA,iBAAA,jEAAgBC,2DAAMC,MACpB,OAAAC,cAAA,KAAA,iBAAAC,qGAAA,AAAA,OAAAC,0BAAAC,aAAA,EAAA,AAAAC,+BAAAH,aAAA,AAAAI,yCAAAJ,YAAA,MAAA,AAAAK,2BAAAC,qBAAA,EAAA,AAAAH,+BAAAH,aAAA,iCAAA,mFAAA,AAAAO,wCAAAP,zeAEQ,AAAA,kFAAMF;KAFd,AAAAC,cAAA,KAAA,QAAA,AAAAA,cAAA,KAAA,QAAA,AAAAA,cAAA,KAAA;;AAQF,oBAAA,uBAAA,3CAAMS,qCAAQV,MACZ,OAACW,2BAAS,AAACZ,0BAAKC,MACd,wBAAA,xBAAiBY;;AAErB,+CAAA,/CAACC,8BAAUjB,6FACP,+BAAA,pBAAKkB,EAAEA,MAAEA,MAAEd,MAAM,OAACU,4BAAOV;;AAE7B,2CAAA,3CAACe,uHACC,aAAA,AAAO,2EAAA,mFAAA,vJAACC,+BAAMpB,iBAAMqB,0KAAqBC;;AAE3C,GAAA,OAASC;CAAT;CAAA,AAAA,AAASA,kCAAW,4BAAA,AAAAC,5BAACV,sDAAQd",
  "names":
  ["aoide.core/world", "cljs.core/atom", "quiescent/component",
-  "aoide.core/Root", "data", "attrs13668", "cljs.core/apply",
-  "js/React.DOM.h1", "cljs.core/map?",
+  "aoide.core/Root", "data", "js/React.DOM.div", "attrs19484",
+  "cljs.core/apply", "js/React.DOM.h1", "cljs.core/map?",
   "sablono.interpreter/attributes", "cljs.core/remove",
   "cljs.core/nil?", "sablono.interpreter/interpret",
   "aoide.core/render", "quiescent/render", "js/document",
