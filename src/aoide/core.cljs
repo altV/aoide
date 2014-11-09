@@ -1,5 +1,9 @@
 (ns aoide.core
-  (:require
+  (:require-macros
+    [cljs.core.async.macros :as asyncm :refer (go go-loop)])
+  (:require 
+    [cljs.core.async :as async :refer (<! >! put! chan)]
+    [taoensso.sente  :as sente :refer (cb-success?)]
     [figwheel.client :as fw]
     [sablono.core :as html :refer-macros [html]]
     [quiescent :as q :include-macros true]))
@@ -25,14 +29,24 @@
      [:div "qwer"]]
     ))
 
+(let [{:keys [chsk ch-recv send-fn state]}
+      (sente/make-channel-socket! "/chsk" ; Note the same path as on server
+                                  {:type :auto ; e/o #{:auto :ajax :ws}
+                                   })]
+  (def chsk       chsk)
+  (def ch-chsk    ch-recv) ; ChannelSocket's receive channel
+  (def chsk-send! send-fn) ; ChannelSocket's send API fn
+  (def chsk-state state)   ; Watchable, read-only atom
+  )
+
 (defn render [data]
   (q/render (Root data)
-    (.getElementById js/document "main-area")))
+            (.getElementById js/document "main-area")))
 
 (add-watch world ::render
-    (fn [_ _ _ data] (render data)))
+           (fn [_ _ _ data] (render data)))
 
 (fw/watch-and-reload :jsload-callback
-  (fn [] (swap! world update-in [:tmp-dev] not)))
+                     (fn [] (swap! world update-in [:tmp-dev] not)))
 
 (defonce *whatever* (render @world))

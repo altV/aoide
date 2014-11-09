@@ -18,6 +18,7 @@
                  [ring/ring-devel "1.3.1"]
                  [http-kit "2.1.19"]
 
+                 [org.clojure/core.match "0.2.1"]
                  [com.taoensso/sente "1.2.0"]
                  [me.raynes/conch "0.7.0"]
                  [clj-http "1.0.1"]
