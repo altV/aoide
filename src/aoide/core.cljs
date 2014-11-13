@@ -7,6 +7,7 @@
     [cljs.core.async :as async :refer (<! >! put! chan)]
     [taoensso.sente  :as sente :refer (cb-success?)]
     [figwheel.client :as fw]
+    [clojure.browser.repl :as brepl]
     [sablono.core :as html :refer-macros [html]]
     [quiescent :as q :include-macros true]))
 
@@ -36,7 +37,6 @@
   (def chsk-state state)   ; Watchable, read-only atom
   )
 
-
 (defn render [data]
   (q/render (Root data)
             (.getElementById js/document "main-area")))
@@ -47,6 +47,8 @@
 (fw/watch-and-reload :jsload-callback
                        (fn [] (swap! world update-in [:tmp-dev] not))
                      :websocket-url   "ws://localhost:3449/figwheel-ws")
+
+(brepl/connect "http://localhost:9000/repl")
 
 (defonce *whatever* (render @world))
 
