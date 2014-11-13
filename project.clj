@@ -12,21 +12,28 @@
                  [org.clojure/core.async "0.1.278.0-76b25b-alpha"]
                  [sablono "0.2.22"]
                  [quiescent "0.1.4"]
+                 [com.cognitect/transit-cljs "0.8.188"]
 
                  ; server
+
+                 ; web
                  [ring/ring-core "1.3.1"]
                  [ring/ring-devel "1.3.1"]
+                 [ring/ring-defaults        "0.1.2"]  ; Incl. `ring-anti-forgery`, etc.
                  [http-kit "2.1.19"]
-
-                 [org.clojure/core.match "0.2.1"]
+                 [clj-webdriver/clj-webdriver "0.6.1"]
+                 [compojure "1.2.1"]
                  [com.taoensso/sente "1.2.0"]
+                 ;Transit deps optional; may be used to aid perf. of larger data payloads
+                 [com.cognitect/transit-clj  "0.8.259"]
+                 [hiccup "1.0.5"]
+
+                 ; core
+                 [org.clojure/core.match "0.2.1"]
                  [me.raynes/conch "0.7.0"]
                  [clj-http "1.0.1"]
                  [cheshire "5.3.1"]
-                 [clj-time "0.8.0"]
-                 [hiccup "1.0.5"]
-                 [clj-webdriver/clj-webdriver "0.6.1"]
-                 [compojure "1.2.1"]]
+                 [clj-time "0.8.0"]]
   
   :plugins [[lein-cljsbuild "1.0.3"]
             [lein-figwheel "0.1.4-SNAPSHOT"]
@@ -40,8 +47,6 @@
   :source-paths ["src"]
   
   :main ^:skip-aot aoide.core
-
-  :ring {:handler aoide.core/app}
 
   :cljsbuild {
     :builds [{:id "dev"
@@ -61,5 +66,4 @@
              :http-server-root "public" ;; default and assumes "resources" 
              :server-port 3449 ;; default
              :css-dirs ["public/resources/css"] ;; watch and update CSS
-             ;; :ring-handler aoide.server/handler
              })

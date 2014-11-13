@@ -9,12 +9,7 @@
     [quiescent :as q :include-macros true]))
 
 
-;; (enable-console-print!)
-
-;; define your app data so that it doesn't get over-written on reload
-;; (defonce app-data (atom {}))
-
-;; (println "Edits to this text should show up in your developer console.")
+(enable-console-print!)
 
 (defonce world (atom {:dirs []
                       :text "hi"
@@ -52,3 +47,5 @@
                      :websocket-url   "ws://localhost:3449/figwheel-ws")
 
 (defonce *whatever* (render @world))
+
+(add-watch chsk-state :sente-updater (fn [_ _ _ data] (println data)))
