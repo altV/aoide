@@ -39,6 +39,7 @@
   (def chsk-state state)   ; Watchable, read-only atom
   )
 
+
 (defn render [data]
   (q/render (Root data)
             (.getElementById js/document "main-area")))
@@ -47,6 +48,7 @@
            (fn [_ _ _ data] (render data)))
 
 (fw/watch-and-reload :jsload-callback
-                     (fn [] (swap! world update-in [:tmp-dev] not)))
+                       (fn [] (swap! world update-in [:tmp-dev] not))
+                     :websocket-url   "ws://localhost:3449/figwheel-ws")
 
 (defonce *whatever* (render @world))

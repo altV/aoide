@@ -5,6 +5,7 @@
             [compojure.core           :refer :all]
             [compojure.route          :as      route]
             [compojure.handler        :refer   [site]]
+            [ring.util.response       :as      response]
             [ring.middleware.reload   :as      reload]
             [org.httpkit.server       :refer   [run-server]]
             [hiccup.core              :as      html]
@@ -12,6 +13,7 @@
             [cheshire.core            :as      json]
             [me.raynes.conch          :refer   [programs       with-programs   let-programs]]
             [taoensso.sente           :as      sente]
+            [clojure.core.async :as async :refer (<! >! put! chan)]
             [clj-webdriver.taxi       :as      webdriver]))
 
 (programs echo ls sleep grep git heroku)
@@ -27,7 +29,7 @@
   )
 
 (defroutes app
-  ;; (GET "/" (ring.util.response/redirect "index.html"))
+  (GET "/" [] (response/resource-response "index.html" {:root "public"}))
   (GET  "/chsk" req (ring-ajax-get-or-ws-handshake req))
   (POST "/chsk" req (ring-ajax-post                req))
   (GET "/time" [] (html/html
@@ -70,4 +72,19 @@
 (defonce chsk-router
   (sente/start-chsk-router-loop! event-msg-handler ch-chsk))
 
-(add-watch connected-uids :her (fn [_ _ _ data] (println data)))
+(add-watch connected-uids :her (fn [_ _ _ data]
+                                 ;; (println "We have a connection!" data)
+                                 ;; (chsk-send! nil [:blah {:from "fuckof"} ])
+                                 ))
+
+(defn broadcast-mouse [{:keys [uid x y]} type]
+  (doseq [z (:any @connected-uids)]
+    (if-not (= z uid) (do
+                        (match [type]
+                               ["move"]
+                               (chsk-send! z [:om-mouse/broadcast {:from uid :x x :y y}])
+                               ["over"]
+                               (chsk-send! z [:om-mouse/show {:from uid}])
+                               ["out"]
+                               (chsk-send! z [:om-mouse/clear {:from uid}])
+                               )))))
