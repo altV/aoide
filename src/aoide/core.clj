@@ -7,13 +7,15 @@
             [compojure.handler        :refer   [site]]
             [ring.util.response       :as      response]
             [ring.middleware.reload   :as      reload]
+            [ring.middleware.defaults]
+            [ring.middleware.anti-forgery :as ring-anti-forgery]
             [org.httpkit.server       :refer   [run-server]]
             [hiccup.core              :as      html]
             [clj-time.core            :as      t]
             [cheshire.core            :as      json]
             [me.raynes.conch          :refer   [programs       with-programs   let-programs]]
             [taoensso.sente           :as      sente]
-            [clojure.core.async :as async :refer (<! >! put! chan)]
+            [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop)]
             [clj-webdriver.taxi       :as      webdriver]))
 
 (programs echo ls sleep grep git heroku)
@@ -47,6 +49,13 @@
     (run-server handler {:port 3000})))
 
 
+(add-watch connected-uids :her (fn [_ _ _ data]
+                                 ;; (println "We have a connection!" data)
+                                 ;; (chsk-send! nil [:blah {:from "fuckof"} ])
+                                 ))
+
+
+
 (defn- event-msg-handler
   [{:as ev-msg :keys [ring-req event ?reply-fn]} _]
   (let [session (:session ring-req)
@@ -68,14 +77,30 @@
     ;;            (when-not (:dummy-reply-fn? (meta ?reply-fn))
     ;;              (?reply-fn {:umatched-event-as-echoed-from-from-server ev}))))))
 
-; getting from example
 (defonce chsk-router
   (sente/start-chsk-router-loop! event-msg-handler ch-chsk))
 
-(add-watch connected-uids :her (fn [_ _ _ data]
-                                 ;; (println "We have a connection!" data)
-                                 ;; (chsk-send! nil [:blah {:from "fuckof"} ])
-                                 ))
+
+(defn start-broadcaster! []
+  (go-loop [i 0]
+    (<! (async/timeout 10000))
+    (println (format "Broadcasting server>user: %s" @connected-uids))
+    (doseq [uid (:any @connected-uids)]
+      (chsk-send! uid
+        [:some/broadcast
+         {:what-is-this "A broadcast pushed from server"
+          :how-often    "Every 10 seconds"
+          :to-whom uid
+          :i i}]))
+    (recur (inc i))))
+
+
+
+
+
+
+
+
 
 (defn broadcast-mouse [{:keys [uid x y]} type]
   (doseq [z (:any @connected-uids)]

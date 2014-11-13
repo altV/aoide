@@ -2,6 +2,7 @@
   (:require-macros
     [cljs.core.async.macros :as asyncm :refer (go go-loop)])
   (:require 
+    [cljs.core.match :as match :refer (match)]
     [cljs.core.async :as async :refer (<! >! put! chan)]
     [taoensso.sente  :as sente :refer (cb-success?)]
     [figwheel.client :as fw]
@@ -49,3 +50,26 @@
 (defonce *whatever* (render @world))
 
 (add-watch chsk-state :sente-updater (fn [_ _ _ data] (println data)))
+
+
+
+(defn- event-handler [data] #_[[id data :as ev] _]
+  (println "the" data))
+
+  ;; (match [id data]
+    ;; [:chsk/state {:first-open? true}] (do
+    ;;                                     (reset! uid (:uid data))
+    ;;                                     (logf "registered-uid: %s" @uid)
+    ;;                                     (let [msg (gdom/getElement "uid")]
+    ;;                                       (set! (.-innerHTML msg) [:uid @uid])))
+    ;; ;;
+    ;; [:chsk/recv  [:om-mouse/broadcast _]] (pointer-move data)
+    ;; ;;
+    ;; [:chsk/recv  [:om-mouse/clear _]]  (set! (.-style.visibility @pointer) "hidden")
+    ;; [:chsk/recv  [:om-mouse/show _]]  (set! (.-style.visibility @pointer) "visible")
+    ;; [:chsk/recv  [:some/broadcast _]]  (println "broadcast signal was received.")
+    ;; :else (println "Unmatched event: %s" ev)))
+
+(defonce chsk-router
+  (sente/start-chsk-router-loop! event-handler ch-chsk))
+
