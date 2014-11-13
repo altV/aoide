@@ -1,6 +1,7 @@
 (ns aoide.core
   (:require-macros
-    [cljs.core.async.macros :as asyncm :refer (go go-loop)])
+    [cljs.core.async.macros :as asyncm :refer (go go-loop)]
+    [cljs.core.match.macros :refer [match]])
   (:require 
     [cljs.core.match :as match :refer (match)]
     [cljs.core.async :as async :refer (<! >! put! chan)]
@@ -10,7 +11,7 @@
     [quiescent :as q :include-macros true]))
 
 
-(enable-console-print!)
+(enable-console-print!) ; todo: only in dev
 
 (defonce world (atom {:dirs []
                       :text "hi"
@@ -53,10 +54,9 @@
 
 
 
-(defn- event-handler [data] #_[[id data :as ev] _]
-  (println "the" data))
-
-  ;; (match [id data]
+(defn- event-handler [[id data :as ev] _]
+  (println "Got message.")
+  (match [id data]
     ;; [:chsk/state {:first-open? true}] (do
     ;;                                     (reset! uid (:uid data))
     ;;                                     (logf "registered-uid: %s" @uid)
@@ -66,9 +66,9 @@
     ;; [:chsk/recv  [:om-mouse/broadcast _]] (pointer-move data)
     ;; ;;
     ;; [:chsk/recv  [:om-mouse/clear _]]  (set! (.-style.visibility @pointer) "hidden")
-    ;; [:chsk/recv  [:om-mouse/show _]]  (set! (.-style.visibility @pointer) "visible")
     ;; [:chsk/recv  [:some/broadcast _]]  (println "broadcast signal was received.")
-    ;; :else (println "Unmatched event: %s" ev)))
+    [:chsk/recv  [::msg msg]]  (swap! world assoc :msg msg)
+    :else (println "Unmatched event: " ev)))
 
 (defonce chsk-router
   (sente/start-chsk-router-loop! event-handler ch-chsk))

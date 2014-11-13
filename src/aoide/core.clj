@@ -81,21 +81,14 @@
   (sente/start-chsk-router-loop! event-msg-handler ch-chsk))
 
 
+;; todo: https://groups.google.com/forum/#!topic/clojure/glMREmCB91U
 (defn start-broadcaster! []
   (go-loop [i 0]
-    (<! (async/timeout 10000))
-    (println (format "Broadcasting server>user: %s" @connected-uids))
+    (<! (async/timeout 1000))
     (doseq [uid (:any @connected-uids)]
       (chsk-send! uid
-        [:some/broadcast
-         {:what-is-this "A broadcast pushed from server"
-          :how-often    "Every 10 seconds"
-          :to-whom uid
-          :i i}]))
+        [::msg (str (t/now))]))
     (recur (inc i))))
-
-
-
 
 
 
