@@ -19,6 +19,7 @@
                  ; web
                  [ring/ring-core "1.3.1"]
                  [ring/ring-devel "1.3.1"]
+                 [weasel "0.4.2"]
                  [ring/ring-defaults        "0.1.2"]  ; Incl. `ring-anti-forgery`, etc.
                  [http-kit "2.1.19"]
                  [clj-webdriver/clj-webdriver "0.6.1"]
@@ -39,24 +40,36 @@
             [lein-figwheel "0.1.4-SNAPSHOT"]
             [lein-pprint         "1.1.2"]
             [lein-ancient        "0.5.5"]
-            [com.cemerick/austin "0.1.4"]
-            #_[com.keminglabs/cljx "0.4.0"]]
+            [com.cemerick/austin "0.1.4"]]
+
+
+  :profiles {:dev {:plugins [[com.keminglabs/cljx "0.4.0" :exclusions [org.clojure/clojure]]]}}
+
+  :cljx {:builds [{:source-paths ["src"]
+                   :output-path "target/classes"
+                   :rules :clj}
+
+                  {:source-paths ["src"]
+                   :output-path "target/classes"
+                   :rules :cljs}]}
+
+  :hooks [cljx.hooks]
 
   :jvm-opts ["-Xmx1G"]
 
-  :source-paths ["src"]
+  :source-paths ["src" "target/classes"]
   
   :main ^:skip-aot aoide.core
 
   :cljsbuild {
     :builds [{:id "dev"
-              :source-paths ["src"]
+              :source-paths ["src" "target/classes"]
               :compiler {:output-to "resources/public/js/compiled/aoide.js"
                          :output-dir "resources/public/js/compiled/out"
                          :optimizations :none
                          :source-map true}}
              {:id "min"
-              :source-paths ["src"]
+              :source-paths ["src" "target/classes"]
               :compiler {:output-to "www/aoide.min.js"
                          :optimizations :advanced
                          :pretty-print false

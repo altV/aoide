@@ -16,7 +16,9 @@
             [me.raynes.conch          :refer   [programs       with-programs   let-programs]]
             [taoensso.sente           :as      sente]
             [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop)]
-            [clj-webdriver.taxi       :as      webdriver]))
+            [clj-webdriver.taxi       :as      webdriver]
+
+            [aoide.browsers :as brw]))
 
 (programs echo ls sleep grep git heroku)
 
@@ -80,7 +82,6 @@
 (defonce chsk-router
   (sente/start-chsk-router-loop! event-msg-handler ch-chsk))
 
-
 ;; todo: https://groups.google.com/forum/#!topic/clojure/glMREmCB91U
 (defn start-broadcaster! []
   (go-loop [i 0]
@@ -89,10 +90,6 @@
       (chsk-send! uid
         [::msg (str (t/now))]))
     (recur (inc i))))
-
-
-
-
 
 
 (defn broadcast-mouse [{:keys [uid x y]} type]
@@ -104,5 +101,6 @@
                                ["over"]
                                (chsk-send! z [:om-mouse/show {:from uid}])
                                ["out"]
-                               (chsk-send! z [:om-mouse/clear {:from uid}])
-                               )))))
+                               (chsk-send! z [:om-mouse/clear {:from uid}]))))))
+
+
