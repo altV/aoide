@@ -13,7 +13,9 @@
     [figwheel.client :as fw]
     [clojure.browser.repl :as brepl]
     [weasel.repl :as ws-repl]
-    #_[quiescent.dom :as d]))
+    #_[quiescent.dom :as d]
+
+    [aoide.browsers :as brw]))
 
 
 (enable-console-print!) ; todo: only in dev

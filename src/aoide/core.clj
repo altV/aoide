@@ -45,7 +45,7 @@
 
 (defn -main [& args] ;; entry point, lein run will pick up and start from here
   (let [handler (if (in-dev? args)
-                  (reload/wrap-reload (site #'app)) ;; only reload when dev
+                  (reload/wrap-reload (site #'app) {:dirs ["src" "target/classes"]}) ;; only reload when dev
                   (site app))]
     (println "zerver shtarted.")
     (run-server handler {:port 3000})))
@@ -102,5 +102,3 @@
                                (chsk-send! z [:om-mouse/show {:from uid}])
                                ["out"]
                                (chsk-send! z [:om-mouse/clear {:from uid}]))))))
-
-
