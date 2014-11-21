@@ -18,7 +18,7 @@
             [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop)]
             [clj-webdriver.taxi       :as      webdriver]
 
-            [aoide.browsers :as brw]))
+            [aoide.browsers :as my.b]))
 
 (programs echo ls sleep grep git heroku)
 
@@ -63,7 +63,7 @@
   (let [session (:session ring-req)
         uid (:uid session)
         [id data :as ev] event]
-    (println (str event))))
+    #_(println (str event))))
     ;; (match [id data]
     ;;        [:om-mouse/position data](do
     ;;                                   (logf "event(:om-mouse/position): %s" data)

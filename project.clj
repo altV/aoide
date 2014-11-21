@@ -34,7 +34,9 @@
                  [me.raynes/conch "0.7.0"]
                  [clj-http "1.0.1"]
                  [cheshire "5.3.1"]
-                 [clj-time "0.8.0"]]
+                 [clj-time "0.8.0"]
+                 [com.cemerick/pomegranate "0.3.0"]
+                 [com.taoensso/timbre "3.3.1-1cd4b70"]]
   
   :plugins [[lein-cljsbuild "1.0.3"]
             [lein-figwheel "0.1.4-SNAPSHOT"]
