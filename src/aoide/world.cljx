@@ -10,7 +10,6 @@
     ))
 
 
-#+cljs
 (defonce world (atom {:dirs []
                       :text "hi"
                       :current-image "//upyachka.ru/img/kot/31.gif"
@@ -18,3 +17,7 @@
                                   :current-page {:url "http://lenta.ru"
                                                  :image "//upyachka.ru/img/kot/30.gif"}}]
                       :msg "Hello"}))
+
+(defonce s-world (atom {})) ; server-only
+
+(defonce c-world (atom {})) ; client-only

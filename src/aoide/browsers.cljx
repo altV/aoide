@@ -7,9 +7,10 @@
      #+cljs [sablono.core :as html :refer-macros [html]]
      #+cljs [quiescent :as q :include-macros true]
       #+clj [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop)]
-      #+clj [clj-webdriver.taxi       :as      webdriver]
+      #+clj [clj-webdriver.taxi       :as      taxi]
       
-     #+cljs [aoide.utils :as my.u])
+     #+cljs [aoide.utils :as my.u]
+            [aoide.world :as my.w])
 
   #+cljs
   (:require-macros
@@ -20,7 +21,7 @@
 (defonce browsers (atom []))
 
 (def known-browsers
-  {:firefox {:browser :firefox}})
+  {:firefox #(taxi/new-driver {:browser :firefox})})
 
 (defn make-browser [type]
   {:pre (contains? (keys known-browsers) type)}
@@ -28,8 +29,11 @@
     {:type type
      :current-page {:url "http://lenta.ru"
                     :image "//upyachka.ru/img/kot/30.gif"}
-     :handler handler}
-    [] make-browser :firefox))
+     :handler (handler)})
+  [] (make-browser :firefox))
+
+(defn add-browser [type] (swap! browsers conj (make-browser type))
+               []     (swap! browsers conj (make-browser)))
 
 #+cljs
 (q/defcomponent Browser [browser]

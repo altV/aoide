@@ -23,7 +23,7 @@
 
 (q/defcomponent Root [data]
   (html
-    [:.ui.stackable.very.relaxed.page.grid #_{:style {:background "#121213" :color "#ffffff"}}
+    [:.ui.stackable.very.relaxed.page.grid _{:style {:background "#121213" :color "#ffffff"}}
      [:.row #_.inverted
       [:.column
        [:.ui.header

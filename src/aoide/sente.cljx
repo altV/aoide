@@ -11,16 +11,9 @@
     [goog.events :as events]
     [goog.dom.classes :as classes]
     [figwheel.client :as fw]
-    [clojure.browser.repl :as brepl]))
-
-(defonce world (atom {:dirs []
-                      :text "hi"
-                      :current-image "//upyachka.ru/img/kot/31.gif"
-                      :browsers [{:type "PhantomJS"
-                                  :current-page {:url "http://lenta.ru"
-                                                 :image "//upyachka.ru/img/kot/30.gif"}}]
-                      :msg "Hello"}))
-
+    [clojure.browser.repl :as brepl]
+    
+    [aoide.world :as my.w]))
 
  #+cljs
 (let [{:keys [chsk ch-recv send-fn state]}
@@ -46,5 +39,5 @@
          ;; [:chsk/recv  [:om-mouse/broadcast _]] (pointer-move data)
          ;; [:chsk/recv  [:om-mouse/clear _]]  (set! (.-style.visibility @pointer) "hidden")
          ;; [:chsk/recv  [:some/broadcast _]]  (println "broadcast signal was received.")
-         [:chsk/recv  [:aoide.core/msg msg]]  (swap! world assoc :msg msg)
+         [:chsk/recv  [:aoide.core/msg msg]]  (swap! my.w/world assoc :msg msg)
          :else (println "Unmatched event: " ev)))
