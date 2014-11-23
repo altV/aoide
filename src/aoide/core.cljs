@@ -23,12 +23,12 @@
 
 (q/defcomponent Root [data]
   (html
-    [:.ui.stackable.very.relaxed.page.grid _{:style {:background "#121213" :color "#ffffff"}}
-     [:.row #_.inverted
+    [:.ui.stackable.very.relaxed.page.grid #_{:style {:background "#121213" :color "#ffffff"}}
+     [:.row
       [:.column
-       [:.ui.header
+       [:div
         [:h1.ui.left.header.left.floated "Яндекс"]
-        [:.ui.button #_{:onclick my.b/add-browser} "Add browser"]
+        [:.ui.button {:onclick my.b/add-browser} "Add browser"]
         [:.ui.divider]]]]
      [:.two.column.row
       [:.column
@@ -52,7 +52,7 @@
                      :websocket-url   "ws://localhost:3449/figwheel-ws")
 
 (brepl/connect "http://localhost:9000/repl")
-;; (ws-repl/connect "ws://localhost:9000")
+;; (ws-repl/connect "ws://localhost:9001")
 
 (defonce *whatever* (render @my.w/world))
 

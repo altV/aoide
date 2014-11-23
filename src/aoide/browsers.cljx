@@ -18,7 +18,8 @@
     [cljs.core.match.macros :refer [match]]))
 
 
-(defonce browsers (atom []))
+;; (defonce browsers (atom []))
+(defonce _add-browsers-to-the-world (swap! my.w/world assoc :browsers []))
 
 (def known-browsers
   {:firefox #(taxi/new-driver {:browser :firefox})})
@@ -28,12 +29,13 @@
   (let [handler (type known-browsers)]
     {:type type
      :current-page {:url "http://lenta.ru"
-                    :image "//upyachka.ru/img/kot/30.gif"}
+                 :image "//upyachka.ru/img/kot/30.gif"}
      :handler (handler)})
   [] (make-browser :firefox))
 
-(defn add-browser [type] (swap! browsers conj (make-browser type))
-               []     (swap! browsers conj (make-browser)))
+(defn add-browser ([type]
+                (swap! my.w/world update-in [:browsers] conj (make-browser type)))
+               ([]     (add-browser :firefox)))
 
 #+cljs
 (q/defcomponent Browser [browser]
