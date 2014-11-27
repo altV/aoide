@@ -36,7 +36,9 @@
         [:.ui.ribbon.label "World"]
         [:table (map (fn [[k v]]
                        [:tr [:td (str k)] [:td (str v)]]) data)]]]
-      [:.column (my.b/Browser (-> data :browsers first))]]]))
+      [:.column (my.b/Browser (-> data :browsers first))]]
+     [:.two.column.row
+      [:.column]]]))
 
 
 

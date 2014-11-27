@@ -59,7 +59,6 @@
                    :output-path "target/classes"
                    :rules :cljs}]}
 
-  ;; :hooks [cljx.hooks]
   :prep-tasks [["cljx" "once"] "javac" "compile"]
 
   :jvm-opts ["-Xmx1G"]

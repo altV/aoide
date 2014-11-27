@@ -15,6 +15,7 @@
             [cheshire.core            :as      json]
             [me.raynes.conch          :refer   [programs       with-programs   let-programs]]
             [taoensso.sente           :as      sente]
+            [taoensso.sente.packers.transit :as sente-transit]
             [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop)]
             [clj-webdriver.taxi       :as      webdriver]
 
@@ -24,7 +25,7 @@
 
 (let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn
               connected-uids]}
-      (sente/make-channel-socket! {})]
+      (sente/make-channel-socket! {:packer (sente-transit/get-flexi-packer :edn)})]
   (def ring-ajax-post                ajax-post-fn)
   (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
   (def ch-chsk                       ch-recv) ; ChannelSocket's receive channel

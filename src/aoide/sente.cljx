@@ -8,6 +8,7 @@
     [cljs.core.match :as match :refer (match)]
     [cljs.core.async :as async :refer (<! >! put! chan)]
     [taoensso.sente  :as sente :refer (cb-success?)]
+    [taoensso.sente.packers.transit :as sente-transit]
     [goog.events :as events]
     [goog.dom.classes :as classes]
     [figwheel.client :as fw]
@@ -19,6 +20,7 @@
 (let [{:keys [chsk ch-recv send-fn state]}
       (sente/make-channel-socket! "/chsk" ; Note the same path as on server
                                   {:type :auto ; e/o #{:auto :ajax :ws}
+                                   :packer (sente-transit/get-flexi-packer :edn)
                                    })]
   (def chsk       chsk)
   (def ch-chsk    ch-recv) ; ChannelSocket's receive channel
