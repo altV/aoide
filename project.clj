@@ -4,6 +4,8 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
+  :repositories {"sonatype-oss-public" "https://oss.sonatype.org/content/groups/public/"}
+
   :dependencies [[org.clojure/clojure "1.6.0"]
                  ; client
                  [org.clojure/clojurescript "0.0-2371"]
@@ -22,7 +24,7 @@
                  [weasel "0.4.2"]
                  [ring/ring-defaults        "0.1.2"]  ; Incl. `ring-anti-forgery`, etc.
                  [http-kit "2.1.19"]
-                 [clj-webdriver/clj-webdriver "0.6.1"]
+                 [com.gibbonspace/clj-webdriver "0.7.0-SNAPSHOT"]
                  [compojure "1.2.1"]
                  [com.taoensso/sente "1.2.0"]
                  ;Transit deps optional; may be used to aid perf. of larger data payloads
@@ -37,10 +39,11 @@
                  [clj-time "0.8.0"]
                  [com.cemerick/pomegranate "0.3.0"]
                  [com.taoensso/timbre "3.3.1-1cd4b70"]]
-  
+
   :plugins [[lein-cljsbuild "1.0.3"]
             [lein-figwheel "0.1.4-SNAPSHOT"]
             [lein-pprint         "1.1.2"]
+            [lein-git-deps "0.0.2-SNAPSHOT"]
             [lein-ancient        "0.5.5"]
             [com.cemerick/austin "0.1.4"]]
 
@@ -60,23 +63,23 @@
   :jvm-opts ["-Xmx1G"]
 
   :source-paths ["src" "target/classes"]
-  
+
   :main ^:skip-aot aoide.core
 
   :cljsbuild {
-    :builds [{:id "dev"
-              :source-paths ["src" "target/classes"]
-              :compiler {:output-to "resources/public/js/compiled/aoide.js"
-                         :output-dir "resources/public/js/compiled/out"
-                         :optimizations :none
-                         :source-map true}}
-             {:id "min"
-              :source-paths ["src" "target/classes"]
-              :compiler {:output-to "www/aoide.min.js"
-                         :optimizations :advanced
-                         :pretty-print false
-                         :preamble ["react/react.min.js"]
-                         :externs ["react/externs/react.js"]}}]}
+              :builds [{:id "dev"
+                        :source-paths ["src" "target/classes"]
+                        :compiler {:output-to "resources/public/js/compiled/aoide.js"
+                                   :output-dir "resources/public/js/compiled/out"
+                                   :optimizations :none
+                                   :source-map true}}
+                       {:id "min"
+                        :source-paths ["src" "target/classes"]
+                        :compiler {:output-to "www/aoide.min.js"
+                                   :optimizations :advanced
+                                   :pretty-print false
+                                   :preamble ["react/react.min.js"]
+                                   :externs ["react/externs/react.js"]}}]}
   :figwheel {
              :http-server-root "public" ;; default and assumes "resources" 
              :server-port 3449 ;; default
