@@ -15,6 +15,7 @@
                  [sablono "0.2.22"]
                  [quiescent "0.1.4"]
                  [com.cognitect/transit-cljs "0.8.188"]
+                 [com.palletops/leaven "0.2.0"]
 
                  ; server
 
@@ -48,7 +49,7 @@
             [com.cemerick/austin "0.1.4"]]
 
 
-  :profiles {:dev {:plugins [[com.keminglabs/cljx "0.4.0" :exclusions [org.clojure/clojure]]]}}
+  :profiles {:dev {:plugins [[org.clojars.cemerick/cljx "0.5.0-SNAPSHOT" :exclusions [org.clojure/clojure]]]}}
 
   :cljx {:builds [{:source-paths ["src"]
                    :output-path "target/classes"
@@ -58,7 +59,8 @@
                    :output-path "target/classes"
                    :rules :cljs}]}
 
-  :hooks [cljx.hooks]
+  ;; :hooks [cljx.hooks]
+  :prep-tasks [["cljx" "once"] "javac" "compile"]
 
   :jvm-opts ["-Xmx1G"]
 
