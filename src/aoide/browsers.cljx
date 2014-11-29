@@ -6,7 +6,7 @@
      #+cljs [cljs.core.async :as async :refer (<! >! put! chan)]
      #+cljs [sablono.core :as html :refer-macros [html]]
      #+cljs [quiescent :as q :include-macros true]
-      #+clj [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop)]
+      #+clj [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop thread)]
       #+clj [clj-webdriver.taxi       :as      taxi]
       
      #+cljs [aoide.utils :as my.u]
@@ -22,7 +22,7 @@
 (defonce _add-browsers-to-the-world (swap! my.w/world assoc :browsers []))
 
 (def known-browsers
-  {:firefox #(taxi/new-driver {:browser :firefox})})
+  {:firefox #(agent (taxi/new-driver {:browser :firefox}) :error-handler (fn [a _] (taxi/quit @a)))})
 
 (defn make-browser [type]
   {:pre (contains? (keys known-browsers) type)}
