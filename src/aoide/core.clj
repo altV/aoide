@@ -19,6 +19,7 @@
             [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop)]
             [clj-webdriver.taxi       :as      webdriver]
 
+            [aoide.stats :as my.s]
             [aoide.browsers :as my.b]))
 
 (programs echo ls sleep grep git heroku)
