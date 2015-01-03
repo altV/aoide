@@ -30,23 +30,21 @@
        [:td "Thread Count"] [:td (:threads data)]]]]))
 
 
-
-
-(def stats-agent (agent {}))
-
+#+clj
 (defn get-os-data []
   (let [ram (async/thread
               (-> (Runtime/getRuntime) .freeMemory (/ 1024.0 1024 1024) (->> (format "%.2f GB"))))
         threads (Thread/activeCount)]
-    (swap! my.w/world assoc :stats {:ram (<!! ram) :threads threads}))
-  (println "yarrrrr"))
+    (swap! my.w/world assoc :stats {:ram (<!! ram) :threads threads})))
 
+#+clj
 (defonce stats-loop (go-loop []
                          (<! (async/timeout 1000))
                          (get-os-data)
                          (recur)))
 
-(defonce _add-stats-to-the-world (swap! my.w/s-world assoc :stats {}))
+;; #+clj
+;; (defonce _add-stats-to-the-world (swap! my.w/s-world assoc :stats {}))
 
 
 

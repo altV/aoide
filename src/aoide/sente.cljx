@@ -1,4 +1,8 @@
 (ns aoide.sente
+  #+clj
+  (:require
+    [taoensso.sente           :as      sente]
+    [taoensso.sente.packers.transit :as sente-transit])
   #+cljs
   (:require-macros
     [cljs.core.async.macros :as asyncm :refer (go go-loop)]
@@ -16,7 +20,23 @@
     
     [aoide.world :as my.w]))
 
- #+cljs
+#+clj
+(let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn
+              connected-uids]}
+      (sente/make-channel-socket! {:packer (sente-transit/get-flexi-packer :edn)})]
+  (def ring-ajax-post                ajax-post-fn)
+  (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
+  (def ch-chsk                       ch-recv) ; ChannelSocket's receive channel
+  (def chsk-send!                    send-fn) ; ChannelSocket's send API fn
+  (def connected-uids                connected-uids) ; Watchable, read-only atom
+)
+
+#+clj
+(defonce chsk-router
+  (sente/start-chsk-router-loop! event-msg-handler ch-chsk))
+
+
+#+cljs
 (let [{:keys [chsk ch-recv send-fn state]}
       (sente/make-channel-socket! "/chsk" ; Note the same path as on server
                                   {:type :auto ; e/o #{:auto :ajax :ws}
@@ -43,3 +63,11 @@
          ;; [:chsk/recv  [:some/broadcast _]]  (println "broadcast signal was received.")
          [:chsk/recv  [:aoide.core/msg msg]]  (swap! my.w/world assoc :msg msg)
          :else (println "Unmatched event: " ev)))
+
+
+;; #+clj
+;; (defn send-updates-to-clients [_ _ _ _]
+;;   (println "sending updates"))
+;;
+;; #+clj
+;; (defonce server-world-watch (add-watch my.w/world ::it send-updates-to-clients))

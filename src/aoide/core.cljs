@@ -16,6 +16,7 @@
 
     [aoide.world :as my.w]
     [aoide.browsers :as my.b]
+    [aoide.stats :as my.stats]
     [aoide.sente :as my.s]))
 
 
