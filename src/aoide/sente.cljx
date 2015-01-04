@@ -32,6 +32,30 @@
 )
 
 #+clj
+(defn- event-msg-handler
+  [{:as ev-msg :keys [ring-req event ?reply-fn]} _]
+  (let [session (:session ring-req)
+        uid (:uid session)
+        [id data :as ev] event]
+    #_(println (str event))))
+    ;; (match [id data]
+    ;;        [:om-mouse/position data](do
+    ;;                                   (logf "event(:om-mouse/position): %s" data)
+    ;;                                   (broadcast-mouse data "move"))
+    ;;        [:om-mouse/clear data](do
+    ;;                                (logf "event(:om-mouse/clear): %s" data)
+    ;;                                (broadcast-mouse data "out"))
+    ;;        [:om-mouse/show data](do
+    ;;                               (logf "event(:om-mouse/show): %s" data)
+    ;;                               (broadcast-mouse data "over"))
+    ;;        :else
+    ;;        (do (logf "Unmatched event: %s" ev)
+    ;;            (when-not (:dummy-reply-fn? (meta ?reply-fn))
+    ;;              (?reply-fn {:umatched-event-as-echoed-from-from-server ev}))))))
+
+
+
+#+clj
 (defonce chsk-router
   (sente/start-chsk-router-loop! event-msg-handler ch-chsk))
 
