@@ -17,14 +17,14 @@
     [aoide.world :as my.w]
     [aoide.browsers :as my.b]
     [aoide.stats :as my.stats]
-    [aoide.sente :as my.s]))
+    [aoide.sente :as my.sente]))
 
 
 (enable-console-print!) ; todo: only in dev
 
 (q/defcomponent Root [data]
   (html
-    [:.ui.stackable.very.relaxed.page.grid #_{:style {:background "#121213" :color "#ffffff"}}
+    [:.ui.stackable.very.relaxed.page.grid
      [:.row
       [:.column
        [:div
@@ -59,7 +59,7 @@
 
 (defonce *whatever* (render @my.w/world))
 
-(add-watch my.s/chsk-state :sente-updater (fn [_ _ _ data] (println data)))
+(add-watch my.sente/chsk-state :sente-updater (fn [_ _ _ data] (println data)))
 
 (defonce chsk-router
-  (sente/start-chsk-router-loop! my.s/event-handler my.s/ch-chsk))
+  (sente/start-chsk-router-loop! my.sente/event-handler my.sente/ch-chsk))
