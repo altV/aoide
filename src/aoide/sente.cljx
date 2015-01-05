@@ -25,7 +25,15 @@
 #+clj
 (let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn
               connected-uids]}
-      (sente/make-channel-socket! {:packer (sente-transit/get-flexi-packer :edn)})]
+      (sente/make-channel-socket!
+        {:packer (sente-transit/get-flexi-packer :edn)
+         :user-id-fn (fn [ring-req]
+                       "generates unique ID for request"
+                       (let [uid (get-in ring-req [:cookies "ring-session" :value])]
+                         ;; (println ring-req)
+                         (println "Connected: " (:remote-addr ring-req) uid)
+                         ;; uid
+                         (java.util.UUID/randomUUID)))})]
   (def ring-ajax-post                ajax-post-fn)
   (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
   (def ch-chsk                       ch-recv) ; ChannelSocket's receive channel

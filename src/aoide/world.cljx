@@ -18,6 +18,6 @@
                                                  :image "//upyachka.ru/img/kot/30.gif"}}]
                       :msg "Hello"}))
 
-(defonce s-world (atom {})) ; server-only
+#+clj  (defonce server (atom {})) ; server-only state
 
-(defonce c-world (atom {})) ; client-only
+#+cljs (defonce client (atom {})) ; client-only state

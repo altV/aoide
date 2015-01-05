@@ -7,6 +7,7 @@
      #+cljs [sablono.core :as html :refer-macros [html]]
      #+cljs [quiescent :as q :include-macros true]
       #+clj [clojure.core.async :as async :refer (<! <!! >! >!! put! chan go go-loop thread)]
+      #+clj [clj-time.core :as t]
             [com.palletops.leaven :as leaven]
             [com.palletops.leaven.protocols :refer [Startable Stoppable]]
       
@@ -33,9 +34,11 @@
 #+clj
 (defn get-os-data []
   (let [ram (async/thread
-              (-> (Runtime/getRuntime) .freeMemory (/ 1024.0 1024 1024) (->> (format "%.2f GB"))))
-        threads (Thread/activeCount)]
-    (swap! my.w/world assoc :stats {:ram (<!! ram) :threads threads})))
+              (-> (Runtime/getRuntime) .freeMemory (/ 1024.0 1024 1024) (->> (format "%.2f GB"))))]
+    (swap! my.w/world assoc :stats {:ram (<!! ram)
+                                    :threads (Thread/activeCount)
+                                    :browsers-connected @aoide.sente/connected-uids
+                                    :server-time (str (t/now))})))
 
 #+clj
 (defonce stats-loop (go-loop []
@@ -43,8 +46,8 @@
                          (get-os-data)
                          (recur)))
 
-;; #+clj
-;; (defonce _add-stats-to-the-world (swap! my.w/s-world assoc :stats {}))
+#+clj
+(defonce _add-stats-to-the-world (swap! my.w/world assoc :stats {}))
 
 
 

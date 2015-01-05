@@ -7,7 +7,9 @@
             [compojure.handler        :refer   [site]]
             [ring.util.response       :as      response]
             [ring.middleware.reload   :as      reload]
-            [ring.middleware.defaults]
+            [ring.middleware.defaults :as      defaults]
+            [ring.middleware.session  :as      session]
+            [ring.middleware.session.cookie  :as cookie]
             [ring.middleware.anti-forgery :as ring-anti-forgery]
             [org.httpkit.server       :refer   [run-server]]
             [hiccup.core              :as      html]
@@ -39,7 +41,10 @@
                   (reload/wrap-reload (site #'app) {:dirs ["src" "target/classes"]}) ;; only reload when dev
                   (site app))]
     (println "zerver shtarted.")
-    (run-server handler {:port 3000})))
+    (run-server (-> handler
+                    (defaults/wrap-defaults defaults/site-defaults)
+                    (session/wrap-session {:store (cookie/cookie-store)}))
+                {:port 3000})))
 
 
 (add-watch my.sente/connected-uids :her (fn [_ _ _ data]
