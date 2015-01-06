@@ -12,6 +12,7 @@
             [com.palletops.leaven.protocols :refer [Startable Stoppable]]
       
      #+cljs [aoide.utils :as my.u]
+            [aoide.sente :as my.sente]
             [aoide.world :as my.w])
 
   #+cljs
@@ -37,7 +38,7 @@
               (-> (Runtime/getRuntime) .freeMemory (/ 1024.0 1024 1024) (->> (format "%.2f GB"))))]
     (swap! my.w/world assoc :stats {:ram (<!! ram)
                                     :threads (Thread/activeCount)
-                                    :browsers-connected @aoide.sente/connected-uids
+                                    :browsers-connected (:any @my.sente/connected-uids)
                                     :server-time (str (t/now))})))
 
 #+clj

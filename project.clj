@@ -16,6 +16,7 @@
                  [quiescent "0.1.4"]
                  [com.cognitect/transit-cljs "0.8.188"]
                  [com.palletops/leaven "0.2.0"]
+                 [org.clojure/tools.namespace "0.2.8"]
 
                  ; server
 

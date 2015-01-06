@@ -32,8 +32,9 @@
                        (let [uid (get-in ring-req [:cookies "ring-session" :value])]
                          ;; (println ring-req)
                          (println "Connected: " (:remote-addr ring-req) uid)
+                         (java.util.UUID/randomUUID)
                          ;; uid
-                         (java.util.UUID/randomUUID)))})]
+                         ))})]
   (def ring-ajax-post                ajax-post-fn)
   (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
   (def ch-chsk                       ch-recv) ; ChannelSocket's receive channel
